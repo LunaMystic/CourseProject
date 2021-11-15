@@ -11,14 +11,19 @@ const getSearchQuery = function() {
 
 const getResultLink = function() {
 	let results = document.querySelectorAll('#search a .iUh30', '#search a .MBeuO', '#search a .DKV0Md');
-	console.log(results);
+	for (let perk of results){
+		var temp_Button = document.createElement('button');
+    // perk.parentNode.parentNode.appendChild(aButton);
+		// console.log(perk.parentNode.parentNode.href)
+		console.log(perk.parentNode.parentNode.href);
+	}
+	console.log(results[0].parentNode.parentNode);
 }
 const init = function() {
   const query = getSearchQuery();
   console.log(query)
   if (query) {
-    // This file is loaded only after the DOM is ready, so no need to wait for
-    // DOMContentLoaded.
+    // Don't do anything if query is empty
     getResultLink();
   }
 };
