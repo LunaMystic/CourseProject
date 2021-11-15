@@ -10,9 +10,9 @@ class BM25:
     def rank(self, query, raw_string, res_num):
         corpus, _, pos_list = self.DataProcessor.build_corpus_for_bm25(raw_string, self.min_len_recoganizedAs_doc)
         query = self.DataProcessor.process_query(query)
+
         bm25 = BM25Okapi(corpus)
         doc_scores = bm25.get_scores(query)
-
         check_dict = {}
         for i in range(len(doc_scores)):
             check_dict[i] = doc_scores[i]

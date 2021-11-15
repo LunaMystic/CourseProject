@@ -4,7 +4,7 @@ import metapy
 class DataProcessor():
     def __init__(self):
         self.metapy_tokenizer = metapy.analyzers.ICUTokenizer(suppress_tags=True)
-        self.delimiter = '([;.-?!])'
+        self.delimiter = '([;.-?!,])'
 
     def naive_split_in_sentences(self, raw_str):
         return re.split(self.delimiter, raw_str)
@@ -23,7 +23,7 @@ class DataProcessor():
         end = 0
 
         for i in range(len(str_list)):
-            if (str_list[i].replace(" ", "").isalpha()):
+            if (str_list[i].replace(" ", "").isalnum()):
                 if len(str_accumulartor) < min_length:
                     str_accumulartor += str_list[i]
                 else:
