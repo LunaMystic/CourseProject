@@ -4,14 +4,22 @@
   "version": "1.0",
   "manifest_version": 3,
   "permissions": [
-    "activeTab",
+    "tabs",
+    "webNavigation",
     "scripting"
   ],
   "action": {},
-  "content_scripts":[{
-  	"matches": ["http://*/*","https://*/*"],
-  	"js": ["content-script.js"]
-  }],
+  "content_scripts":[
+    {
+  	 "matches": ["https://*.google.com/search*"],
+  	 "js": ["google-content-script.js"]
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["search-content-script.js"],
+      "exclude_matches": ["https://*.google.com/search*"]
+    }
+  ],
   "background": {
     "service_worker": "background.js"
   }
