@@ -1,0 +1,27 @@
+{
+  "name": "Course project - Better Search Bar",
+  "description": "Better search bar for Crhrome, see proposal for detail",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [
+    "tabs",
+    "webNavigation",
+    "scripting"
+  ],
+  "action": {},
+  "content_scripts":[
+    {
+  	 "matches": ["https://*.google.com/search*"],
+  	 "js": ["google-content-script.js"]
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["search-content-script.js"],
+      "exclude_matches": ["https://*.google.com/search*"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+
+}
