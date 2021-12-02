@@ -7,6 +7,13 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from rank_bm25 import BM25Okapi
 
+
+#prerequisites (subject to change)
+# pip install rank_bm25
+# pip install nltk
+# pip install bs4
+# pip install googlesearch-python
+
 #query, can make it take it from some argument
 query = "halo"
 
