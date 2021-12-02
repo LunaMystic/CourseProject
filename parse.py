@@ -13,6 +13,7 @@ from rank_bm25 import BM25Okapi
 # pip install nltk
 # pip install bs4
 # pip install googlesearch-python
+# python -m nltk.downloader stopwords              
 
 #query, can make it take it from some argument
 query = "halo"
@@ -30,7 +31,7 @@ ps = PorterStemmer()
 #results holds counts for each element in links
 results = []
 
-for url in links[:2]:#change later to all links, just first 2 for testing purposes
+for url in links:#change later to all links, just first 2 for testing purposes
     print(url)
     try:
         r = requests.get(url)
@@ -75,11 +76,18 @@ for url in links[:2]:#change later to all links, just first 2 for testing purpos
                         tmp.append(ps.stem(word)) #stem
     results.append(tmp)
 
+"""
 for r in results:
     print(r)
     print()
+"""
 
 #calculate bm25 scores for all documents
 bm25 = BM25Okapi(results)
 scores = bm25.get_scores(query.split(" "))
 print(scores)
+
+#combine scores with links and sort?
+final_eval = list(zip(scores,links)) #can zip the corpus if a summary is needed
+final_eval.sort(key = lambda x: x[0], reverse = True) #rank by highest  
+print(final_eval)
