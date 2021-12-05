@@ -6,6 +6,7 @@ import re
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from rank_bm25 import BM25Okapi
+import sys
 
 
 #prerequisites (subject to change)
@@ -15,8 +16,8 @@ from rank_bm25 import BM25Okapi
 # pip install googlesearch-python
 # python -m nltk.downloader stopwords              
 
-#query, can make it take it from some argument
-query = "halo"
+#query, currently takes each argument and adds it to the string
+query = ' '.join(sys.argv[1:])
 
 #get links, num = how many links you want
 links = []
@@ -68,8 +69,8 @@ for url in links:#change later to all links, just first 2 for testing purposes
     tmp = []
     for t in text:
         if t.parent.name not in blacklist:
-            clean = re.sub(r'[^\w]', ' ', t) #removing symbols
-            letters = clean.split()
+            cleaned = re.sub(r'[^\w]', ' ', t) #removing symbols
+            letters = cleaned.split()
             if letters != []:
                 for word in letters:
                     if word.isalpha() and word not in stopwords: #only include words that consist of a-z and are not stopwords
