@@ -6,7 +6,8 @@
   "permissions": [
     "tabs",
     "webNavigation",
-    "scripting"
+    "scripting",
+    "nativeMessaging"
   ],
   "action": {},
   "content_scripts":[

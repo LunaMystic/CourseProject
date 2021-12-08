@@ -1,6 +1,6 @@
 console.log("Search page content script");
 let query = null;
-
+let port = null;
 /**
  * Function Where available robust Search
  **/
@@ -17,14 +17,6 @@ function search(query){
 		console.log(text.innerHTML.includes(query))
 		if (text.innerHTML.includes(query)){
 			console.log(text)
-			// while(text.children.length){
-			// 	if(text.children.length != 1){
-			// 		console.log(text.children.length)
-			// 		break;
-			// 	} else {
-			// 		text = text.children
-			// 	}
-			// }
 			text.innerHTML = text.innerHTML.replaceAll(query, "SPONGEBOB");
 		}
 	}
@@ -32,6 +24,16 @@ function search(query){
 }
 
 chrome.runtime.onMessage.addListener(function(msg) {
-  query = msg.message;
-  search(query);
+	if(msg.type === "query"){
+		query = msg.data;
+		chrome.runtime.sendMessage({
+			type: "bm25",
+			data: {key: query, doc: getText()}
+		});
+	} else {
+		console.log(msg.data)
+		var lime = getText();
+		console.log(lime.slice(msg.data.index[0][0],msg.data.index[0][1]));
+		console.log(lime.slice(msg.data.index[1][0],msg.data.index[1][1]));
+	}
 });

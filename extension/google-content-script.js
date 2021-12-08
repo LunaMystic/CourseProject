@@ -11,13 +11,10 @@ const getResultLink = function(query) {
 	let results = document.querySelectorAll('#search a .iUh30', '#search a .MBeuO', '#search a .DKV0Md');
 	for (let perk of results){
 		var temp_Button = document.createElement('button');
-    // perk.parentNode.parentNode.appendChild(aButton);
-		// console.log(perk.parentNode.parentNode.href)
 		perk.parentNode.parentNode.addEventListener('click', function() {
-    	alert("visiting: " + perk.parentNode.parentNode.href + ".\nQuery: " + query);
-    	chrome.runtime.sendMessage({message: query});
-    });
-		// console.log(perk.parentNode.parentNode.href);
+	    	alert("visiting: " + perk.parentNode.parentNode.href + ".\nQuery: " + query);
+	    	chrome.runtime.sendMessage({type: "query", data: query});
+    	});
 	}
 	console.log(results[0].parentNode.parentNode);
 }
