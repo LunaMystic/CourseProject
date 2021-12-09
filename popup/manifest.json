@@ -1,0 +1,11 @@
+{
+  "manifest_version": 2,
+
+  "name": "Course project - Better Search Bar",
+  "description": "Better search bar for Chrome, see proposal for details",
+  "version": "1.0",
+
+  "browser_action": {
+   "default_popup": "popup.html"
+  } 
+}
