@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', documentEvents);
 
 function dostuff(input) { 
-    console.log("input value is : " + input.value);
-    alert("The entered data is : " + input.value);
+    console.log(input.value);
+    alert(input.value);
 }
 
 function documentEvents() {    
