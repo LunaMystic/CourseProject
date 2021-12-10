@@ -1,11 +1,19 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
 
   "name": "Course project - Better Search Bar",
-  "description": "Better search bar for Chrome, see proposal for details",
+  "description": "test",
   "version": "1.0",
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"]
+  }],
 
-  "browser_action": {
+  "action": {
    "default_popup": "popup.html"
-  } 
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["tabs"]
 }

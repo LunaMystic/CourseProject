@@ -1,13 +1,14 @@
-document.addEventListener('DOMContentLoaded', documentEvents);
-
-function dostuff(input) { 
-    console.log("input value is : " + input.value);
-    alert("The entered data is : " + input.value);
-}
-
-function documentEvents() {    
-  document.getElementById('run_btn').addEventListener('click', 
-    function() { dostuff(document.getElementById('textbox'));
+function popup() {
+  console.log("button pressed")
+  console.log(document.documentElement.innerHTML);
+  q = document.getElementById('textbox').value;
+  console.log(q); 
+  chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
+    var activeTab = tabs[0];
+    chrome.tabs.sendMessage(activeTab.id, {"message": "start", data:q});
   });
-
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("run_btn").addEventListener("click", popup);
+});
