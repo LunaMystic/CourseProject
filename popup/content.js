@@ -8,28 +8,21 @@ chrome.runtime.onMessage.addListener(
 
   function start(query){
     console.log(query);
-    //console.log(document.documentElement.innerHTML);
-    
-    //alert(document.documentElement.innerHTML);
 
-
-    html_string = document.documentElement.innerHTML;
-
-    console.log(html_string);
-
-    /*TODO: get sentences from the html*/
+    html_string = document.body.innerHTML;
+    text = document.body.innerText;
+    sentences = text.split('!').join('.').split('?').join('\n').split("\n"); //split into sentences
 
     /*TODO: run bm25*/
-
-    res = []; //list of strings that should be highlighted
-
+    res = []
+    res = ["Extensions"] //testing
     
     for (const tmp of res) {
       html_string = html_string.replaceAll(tmp, "<mark>" + tmp + "<\mark>");
     }
     
-    console.log(html_string);
+    
+    //console.log(html_string);
 
-    /*TODO: update page with new html*/
-
+    document.body.innerHTML = html_string;
   }
