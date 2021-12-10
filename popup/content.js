@@ -8,9 +8,9 @@ chrome.runtime.onMessage.addListener(
 
   function start(query){
     console.log(query);
-    console.log(document.documentElement.innerHTML);
+    //console.log(document.documentElement.innerHTML);
     
-    alert(document.documentElement.innerHTML);
+    //alert(document.documentElement.innerHTML);
 
 
     html_string = document.documentElement.innerHTML;
@@ -29,5 +29,7 @@ chrome.runtime.onMessage.addListener(
     }
     
     console.log(html_string);
+
+    /*TODO: update page with new html*/
 
   }
