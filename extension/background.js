@@ -2,6 +2,9 @@ var query = null;
 var port = null;
 var activeSearchTab = null;
 
+/**
+ * Send query to new page outgoing from google.com
+ **/
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	/** Wait For page fully Render **/
 	if (changeInfo.status === 'complete') {
@@ -13,16 +16,21 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	}
 })
 
+/**
+ * Handling Search Request send by tabs
+ **/
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
 	if(msg.type === "query"){
 		query = msg.data;
 	} else if (msg.type === "bm25"){
 		console.log(encodeURI(msg.data.doc).split(/%..|./).length - 1)
-		// sendNativeMessage(JSON.stringify(msg.data).replace(/\\"/g, '\"'))
 		start(msg.data.doc, msg.data.key, sender.tab.id)
 	}
 });
 
+/**
+ * Resolving Search Request and send the result back to tabs
+ **/
 function start(doc, query, tabId){
 	let url = "http://localhost:8000/pred"
 	var data = {
@@ -49,10 +57,6 @@ function start(doc, query, tabId){
 		.catch(error => {
 		  console.error('Error:', error);
 		});
-	res = []; //list of strings that should be highlighted
 }
 
-// chrome.tabs.sendMessage(activeSearchTab, {type:"bm25", data: message});
-
 console.log("Background start")
-

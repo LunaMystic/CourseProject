@@ -1,29 +1,36 @@
-console.log(window)
-// console.log(document.querySelector("input[name=q]").value) #discarded as its deprecated
-
+// Citation to MDN Docs and Stackoverflow for fetch google searchbox query
+/**
+ * Get the input query
+ */
 const getSearchQuery = function() {
 	let unparse_q = window.location.search.split('&')[0].split('=')[1];
 	const parse_q = decodeURIComponent(unparse_q.replace(/\+/g, ' '));
 	return parse_q;
 }
 
-const getResultLink = function(query) {
+/**
+ * Modify each outgoing href by input query
+ */
+const modifyResultLink = function(query) {
 	let results = document.querySelectorAll('#search a .iUh30', '#search a .MBeuO', '#search a .DKV0Md');
 	for (let perk of results){
 		var temp_Button = document.createElement('button');
 		perk.parentNode.parentNode.addEventListener('click', function() {
-	    	alert("visiting: " + perk.parentNode.parentNode.href + ".\nQuery: " + query);
+	    	alert("Similarity search will be performed based on detecting Query: " + query);
 	    	chrome.runtime.sendMessage({type: "query", data: query});
     	});
 	}
-	console.log(results[0].parentNode.parentNode);
 }
+
+/**
+ * Init function called after page render
+ */
 const init = function() {
   const query = getSearchQuery();
   console.log(query)
   if (query) {
     // Don't do anything if query is empty
-    getResultLink(query);
+    modifyResultLink(query);
   }
 };
 

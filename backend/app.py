@@ -10,21 +10,7 @@ app = Sanic(name="project")
 #localhost:8000
 @app.route("/")
 async def home(request):
-   return response.text("testing")
-   #return json({ "hello": "world" })
-
-# @app.route('/post')
-# async def post_handler(request):
-#     return text('POST request - {}'.format(request.json))
-
-# @app.route('/get')
-# async def get_handler(request):
-#     print("TESTING")
-#     return text('GET request - {}'.format(request.args))
-
-# @app.route("/json")
-# def post_json(request):
-#     return json({ "received": True, "message": request.json })
+   return response.text("Home")
 
 @app.route('/pred', methods=["POST"])
 def get_image(request):
@@ -33,7 +19,6 @@ def get_image(request):
     
     if type(request_body) == str:
         request_body = json.loads(request_body)
-    print(request_body)
     if request_body["model_name"] == "bert":
         model_requested = BERT()
     else:
