@@ -30,7 +30,7 @@ function start(doc, query, tabId){
 		"doc": doc,
 		"query": query,
 		"res_num": 10,
-		"min_len_recoganizedAs_doc" : 1000
+		"min_len_recoganizedAs_doc" : doc.length/10
 	};
 	let parameter = {
 		method: 'POST',

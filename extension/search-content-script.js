@@ -70,9 +70,11 @@ chrome.runtime.onMessage.addListener(function(msg) {
 	} else if (msg.type === "res"){
 		console.log(msg.data)
 		console.log(msg.data[0][0], msg.data[0][1])
-		var lifelist = getText().slice(msg.data[0][0], msg.data[0][1]).split("\n");
+		var lifelist = getText().slice(msg.data[0][0], msg.data[0][1])
+			.split("\n").join("\t").split("\t");
 		highlighter(lifelist)
-		lifelist = getText().slice(msg.data[1][0], msg.data[1][1]).split("\n");
+		lifelist = getText().slice(msg.data[1][0], msg.data[1][1])
+			.split("\n").join("\t").split("\t");
 		highlighter(lifelist)
 	} else {
 		console.log("Undefined behavior for meessage: ", msg)
