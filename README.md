@@ -7,8 +7,9 @@ Better Search Box is a chrome extension, designed to match a user query with rel
 Better Search Box is written with a JavaScript frontend and Python backend. The frontend creates a user interface in the form of a popup, and handles most of the work except for the text ranking. We use multiple Chrome APIs such as tabs in the project. The frontend functions much like a standard Chrome Extension, using messaging to accomplish communication between the extension and t he browser. Once the query is created, the query and text are sent to the Python backend by using a Sanic server. The backend then uses Okapi BM25 to determine which segments of text is most relevant to the query, and sends the response back to the extension. The webpage is then highlighted by adjusting the html of the webpage with the relevant sentences.
 
 ## Usage Documentation
-For mac user, simply run [sh setup.sh] to install dependencies and run the server
-Prerequisites:
+For a mac or linux user, simply run [sh setup.sh] to install dependencies and run the server
+
+Otherwise, install the prerequisites manually:
 ```
 Python 3.7 and pip
 pip install sanic
