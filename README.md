@@ -20,17 +20,17 @@ pip install pipeline
 
 A windows user can probably run it using the same commands in a command prompt, provided they have python and pip installed, however it is not recommended/tested. We suggest using WSL or a VM.
 
-To install the extension:
+### To install the extension:
 Open Chrome
 Go to page chrome://extensions/
 Activate 'Developer Mode' in the top right
 Click 'Load Unpacked' in the top left
 Redirect to folder CourseProject/extension and hit 'Select Folder'
 
-To run the server:
+### To run the server:
 make sure prerequisites are fullfilled and run python backend/app.py
 
-Extension function:
-*
-*
-*
+### To use the extension:
+Google search a subject and click on a link, which will automatically highlight text. Otherwise, manually query by clicking the extension in the top right, enter your query, and click run.
+
+Video tutorial here: https://www.youtube.com/watch?v=Xmho9pgFnyc
