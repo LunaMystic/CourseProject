@@ -11,9 +11,11 @@ For a mac or linux user, simply run [sh setup.sh] to install dependencies and ru
 
 Otherwise, install the prerequisites manually:
 ```
-Python 3.7 and pip
+Use Python 3.7 and pip
 pip install sanic
 pip install transformers
+pip install rank_bm25
+pip install pipeline
 ```
 
 To install the extension:
