@@ -18,7 +18,7 @@ pip install rank_bm25
 pip install pipeline
 ```
 
-A windows user can probably run it using the same commands, provided they have python and pip installed, however it is not recommended. We suggest using WSL or a VM.
+A windows user can probably run it using the same commands in a command prompt, provided they have python and pip installed, however it is not recommended/tested. We suggest using WSL or a VM.
 
 To install the extension:
 Open Chrome
