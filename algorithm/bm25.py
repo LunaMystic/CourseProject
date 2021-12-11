@@ -12,6 +12,7 @@ class BM25:
         corpus, _, pos_list = self.DataProcessor.build_corpus_for_bm25(raw_string, self.min_len_recoganizedAs_doc)
         query = self.DataProcessor.process_query(query)
 
+        # print(corpus[3], "aaaaa")
         if len(query) == 0 or len(corpus) == 0:
             return []
             
@@ -31,5 +32,6 @@ class BM25:
             else:
                 break
 
+        # print(res, "bbbbb")
         return res
         

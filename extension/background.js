@@ -29,8 +29,8 @@ function start(doc, query, tabId){
 		"model_name" : "BM25",
 		"doc": doc,
 		"query": query,
-		"res_num": 2,
-		"min_len_recoganizedAs_doc" : 100
+		"res_num": 10,
+		"min_len_recoganizedAs_doc" : 1000
 	};
 	let parameter = {
 		method: 'POST',
