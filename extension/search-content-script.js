@@ -37,6 +37,29 @@ function start(query){
 	/*TODO: update page with new html*/
 }
 
+function highlighter(lifelist){
+	for (const s of lifelist){
+			if(s.length>0){
+				console.log(s);
+				let painter = Array.from(document.querySelectorAll('*'))
+  			 			.filter(el => el.innerText === s);
+  			 	// if(!painter.length){
+  			 	// 	painter = Array.from(document.querySelectorAll('*'))
+  			 	// 		.filter(el => el.innerText.includes(s))
+  			 	// }
+  			 	if(painter.length){
+  			 		for (index in painter){
+  			 			milk = painter[index]
+  			 			console.log(milk.innerHTML);
+	  			 		milk.innerHTML = 
+		  			 		"<span style=\"background-color:yellow\">"
+		  			 		+ milk.innerHTML + "</span>"; 
+  			 		}
+  			 	}
+			}
+		}
+}
+
 chrome.runtime.onMessage.addListener(function(msg) {
 	if(msg.type === "query"){
 		query = msg.data;
@@ -46,8 +69,11 @@ chrome.runtime.onMessage.addListener(function(msg) {
 		});
 	} else if (msg.type === "res"){
 		console.log(msg.data)
-		console.log(msg.data[0][0])
-		console.log(getText().slice(msg.data[1][0], msg.data[1][1]))
+		console.log(msg.data[0][0], msg.data[0][1])
+		var lifelist = getText().slice(msg.data[0][0], msg.data[0][1]).split("\n");
+		highlighter(lifelist)
+		lifelist = getText().slice(msg.data[1][0], msg.data[1][1]).split("\n");
+		highlighter(lifelist)
 	} else {
 		console.log("Undefined behavior for meessage: ", msg)
 	}
