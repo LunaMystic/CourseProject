@@ -33,7 +33,7 @@ def get_image(request):
     
     if type(request_body) == str:
         request_body = json.loads(request_body)
-
+    print(request_body)
     if request_body["model_name"] == "bert":
         model_requested = BERT()
     else:

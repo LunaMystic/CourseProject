@@ -2,7 +2,7 @@ var query = null;
 var port = null;
 var activeSearchTab = null;
 
-chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	/** Wait For page fully Render **/
 	if (changeInfo.status === 'complete') {
 		if (query){
@@ -13,44 +13,46 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
 	}
 })
 
-chrome.runtime.onMessage.addListener(function(msg) {
+chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
 	if(msg.type === "query"){
 		query = msg.data;
 	} else if (msg.type === "bm25"){
-		console.log(encodeURI(msg.data).split(/%..|./).length - 1)
-		sendNativeMessage(JSON.stringify(msg.data).replace(/\\"/g, '\"'))
+		console.log(encodeURI(msg.data.doc).split(/%..|./).length - 1)
+		// sendNativeMessage(JSON.stringify(msg.data).replace(/\\"/g, '\"'))
+		start(msg.data.doc, msg.data.key, sender.tab.id)
 	}
 });
 
-
-function sendNativeMessage(message) {
-  port.postMessage(String(message));
-  console.log("Sent message: " + message);
+function start(doc, query, tabId){
+	let url = "http://localhost:8000/pred"
+	var data = {
+		"model_name" : "BM25",
+		"doc": doc,
+		"query": query,
+		"res_num": 2,
+		"min_len_recoganizedAs_doc" : 100
+	};
+	let parameter = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		mode: 'cors',
+		body: JSON.stringify(data)
+	}
+	const req = fetch(url, parameter)
+		.then(response => response.json())
+		.then(data => {
+			console.log(data)
+			chrome.tabs.sendMessage(tabId, {type:"res", data: JSON.parse(data)});
+		})
+		.catch(error => {
+		  console.error('Error:', error);
+		});
+	res = []; //list of strings that should be highlighted
 }
 
-function onNativeMessage(message) {
-  console.log("Received message: " + message);
-  console.log(message);
-  chrome.tabs.sendMessage(activeSearchTab, {type:"bm25", data: message});
-}
+// chrome.tabs.sendMessage(activeSearchTab, {type:"bm25", data: message});
 
-function onDisconnected() {
-  console.log("Failed to connect: " + chrome.runtime.lastError.message);
-  port = null;
-  initConn();
-}
-
-/**
- * Function where native connect
- **/
-function initConn(){
-	var hostName = "com.google.chrome.page.bm25";
-	port = chrome.runtime.connectNative(hostName);
-	port.onMessage.addListener(onNativeMessage);
-	port.onDisconnect.addListener(onDisconnected);
-}
-
-console.log("let me thinks, again")
-initConn()
-console.log("OMG SUCESSS!!!")
+console.log("Background start")
 

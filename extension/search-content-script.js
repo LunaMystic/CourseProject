@@ -23,6 +23,20 @@ function search(query){
     return document.body.innerText;
 }
 
+function start(query){
+
+	html_string = document.documentElement.innerText;
+	console.log(html_string);
+
+	for (const tmp of res) {
+	  html_string = html_string.replaceAll(tmp, "<mark>" + tmp + "<\mark>");
+	}
+
+	console.log(html_string);
+
+	/*TODO: update page with new html*/
+}
+
 chrome.runtime.onMessage.addListener(function(msg) {
 	if(msg.type === "query"){
 		query = msg.data;
@@ -30,10 +44,11 @@ chrome.runtime.onMessage.addListener(function(msg) {
 			type: "bm25",
 			data: {key: query, doc: getText()}
 		});
-	} else {
+	} else if (msg.type === "res"){
 		console.log(msg.data)
-		var lime = getText();
-		console.log(lime.slice(msg.data.index[0][0],msg.data.index[0][1]));
-		console.log(lime.slice(msg.data.index[1][0],msg.data.index[1][1]));
+		console.log(msg.data[0][0])
+		console.log(getText().slice(msg.data[1][0], msg.data[1][1]))
+	} else {
+		console.log("Undefined behavior for meessage: ", msg)
 	}
 });

@@ -1,7 +1,7 @@
 import requests
 import json
 
-url = 'http://localhost:8000/get'
+url = 'http://localhost:8000/'
 payload = {'some': 'data'}
 header = {'content-type': 'application/json'}
 
