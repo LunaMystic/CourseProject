@@ -15,12 +15,13 @@ chrome.runtime.onMessage.addListener(
 
     /*TODO: run bm25*/
     res = []
-    res = ["Extensions"] //testing
+    res = ["Extensions are made of different, but cohesive, components."] //testing
     
     for (const tmp of res) {
-      html_string = html_string.replaceAll(tmp, "<mark>" + tmp + "<\mark>");
+      html_string = html_string.replaceAll(tmp, "<mark>" + tmp + "</mark>");
     }
     
+
     
     //console.log(html_string);
 
