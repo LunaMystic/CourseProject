@@ -55,7 +55,7 @@ Video tutorial here: https://www.youtube.com/watch?v=Xmho9pgFnyc
 
 ### Future Work:
 We have implemented everything covered in proposal. However as this idea is pretty interesting and practical we have some idea of future works 
-* Supporting highlight more ambigious html element
+* Supporting highlight more ambigious HTML element
 * Prettify the popup window
 * Add support to more methods besides BM25
 * Future implementation of BERT to answer qustion with specific answer that includes in the web page (such as "Who is CEO of Tesla" in Tesla web page)
@@ -64,8 +64,8 @@ We have implemented everything covered in proposal. However as this idea is pret
 
 ### Contribution:
 
-Suxiang Han - Frontend Chrome Extension, Client-Server JavaScript Communication
+Suxiang Han - Frontend Chrome Extension, Client-Server Communication
 
-Juntong Song - Backend BM25 and Bert ranking algorithm implementation
+Juntong Song - Backend, Prediction Module implementation, Client-Server Communication
 
-Joshua Wu - Frontend Chrome Extension, popup
+Joshua Wu - Frontend Chrome Extension, popup, Client-Server Communication: router testing
