@@ -23,6 +23,10 @@ class BM25:
             check_dict[i] = doc_scores[i]
 
         res_idx = sorted(check_dict, key=check_dict.get, reverse=True)
+        # print(len(pos_list), "aaaaaaaaaa")
+        # print(pos_list, "aaaaaaaaaa")
+        # print(check_dict, "ccccccccccccc")
+        # print(res_idx, "ccccccccccccc")
 
         res = []
         for i in range(res_num):

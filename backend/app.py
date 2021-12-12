@@ -19,7 +19,7 @@ def get_image(request):
     
     if type(request_body) == str:
         request_body = json.loads(request_body)
-    print(request_body)
+    # print(request_body)
     if request_body["model_name"] == "bert":
         model_requested = BERT()
     else:
@@ -31,10 +31,10 @@ def get_image(request):
 
     ret_raw = model_requested.rank(query, doc, res_num)
     ret = json.dumps(ret_raw)
-    print(ret)
-    for single in ret_raw:
-        print(single[0], single[1])
-        print(doc[single[0]:single[1]])
+    # print(ret)
+    # for single in ret_raw:
+    #     print(single[0], single[1])
+    #     print(doc[single[0]:single[1]])
     return response.json(ret)
         
 if __name__ == '__main__':
