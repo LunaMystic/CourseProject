@@ -61,3 +61,11 @@ We have implemented everything covered in proposal. However as this idea is pret
 * Future implementation of BERT to answer qustion with specific answer that includes in the web page (such as "Who is CEO of Tesla" in Tesla web page)
 * Currently, the BM25 will give a high score to the reference list on the page. We have noticed this problem and plan to resolve it in the future by either letting the users choose the number of prediction results shown on the page or adding more rules in the algorithm to filter out these references.
 * We plan to move the backend to the Cloud to support the possible new features, which could require more computation resources.
+
+### Contribution:
+
+Suxiang Han
+
+Juntong Song
+
+Joshua Wu
