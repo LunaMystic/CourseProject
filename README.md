@@ -37,9 +37,16 @@ Features:
 * Auto fetch the query entered during google search page
 * Auto perform similarity search when navigate out from google
 * Perform similarity search based on user specific query
-* Perform BERT based on  user
+* Perform simple BERT based on user specific query
 * Highlighting
 
 Shortcut:
 <kbd>Ctrl (⌘ for Mac) + Shift + Z</kbd>
 Video tutorial here: https://www.youtube.com/watch?v=Xmho9pgFnyc
+
+### Future Work:
+We have implemented everything covered in proposal. However as this idea is pretty interesting and practical we have some idea of future works 
+* Supporting highlight more ambigious html element
+* Prettify the popup window
+* Add support to more methods besides BM25
+* Future implementation of BERT to answer qustion with specific answer that includes in the web page (such as "Who is CEO of Tesla" in Tesla web page)
