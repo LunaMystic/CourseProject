@@ -33,4 +33,13 @@ make sure prerequisites are fullfilled and run python backend/app.py
 ### To use the extension:
 Google search a subject and click on a link, which will automatically highlight text. Otherwise, manually query by clicking the extension in the top right, enter your query, and click run.
 
+Features:
+* Auto fetch the query entered during google search page
+* Auto perform similarity search when navigate out from google
+* Perform similarity search based on user specific query
+* Perform BERT based on  user
+* Highlighting
+
+Shortcut:
+<kbd>Ctrl (⌘ for Mac) + Shift + Z</kbd>
 Video tutorial here: https://www.youtube.com/watch?v=Xmho9pgFnyc
