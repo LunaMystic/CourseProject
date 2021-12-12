@@ -50,6 +50,7 @@ Tips:
 
 Shortcut:
 <kbd>Ctrl (⌘ for Mac) + Shift + Z</kbd>
+
 Video tutorial here: https://www.youtube.com/watch?v=Xmho9pgFnyc
 
 ### Future Work:
