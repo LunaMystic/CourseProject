@@ -37,18 +37,27 @@ chrome.runtime.onMessage.addListener(function(msg) {
 	if(msg.type === "query"){
 		query = msg.data;
 		chrome.runtime.sendMessage({
-			type: "bm25",
+			type: msg.model_name,
 			data: {key: query, doc: getText()}
 		});
 	} else if (msg.type === "res"){
-		/** Highlight the first part of matching doc **/
-		var lifelist = getText().slice(msg.data[0][0], msg.data[0][1])
-			.split("\n").join("\t").split("\t");
-		highlighter(lifelist)
-		/** Highlight the second part of matching doc **/
-		lifelist = getText().slice(msg.data[1][0], msg.data[1][1])
-			.split("\n").join("\t").split("\t");
-		highlighter(lifelist)
+		if(msg.model_name === "bm25"){
+			/** Highlight the first part of matching doc **/
+			var lifelist = getText().slice(msg.data[0][0], msg.data[0][1])
+				.split("\n").join("\t").split("\t");
+			highlighter(lifelist)
+			/** Highlight the second part of matching doc **/
+			lifelist = getText().slice(msg.data[1][0], msg.data[1][1])
+				.split("\n").join("\t").split("\t");
+			highlighter(lifelist)
+			/** Highlight the third part of matching doc **/
+			lifelist = getText().slice(msg.data[2][0], msg.data[2][1])
+				.split("\n").join("\t").split("\t");
+			highlighter(lifelist)
+		} else {
+			console.log(getText().slice(msg.data[0][0], msg.data[0][1]))
+			alert(getText().slice(msg.data[0][0], msg.data[0][1]))
+		}
 	} else {
 		console.log("Undefined behavior for meessage: ", msg)
 	}
