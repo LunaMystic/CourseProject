@@ -2,7 +2,7 @@ from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 from transformers import pipeline
 
 class BERT():
-    def __init__(self, max_ans_num = 6, acc_tolerance = 0.0001):
+    def __init__(self, max_ans_num = 20, acc_tolerance = 0.0001):
         model_name = "distilbert-base-cased-distilled-squad"
         self.predictor = pipeline('question-answering', model=model_name, tokenizer=model_name, top_k=max_ans_num)
         self.acc_tolerance = acc_tolerance
