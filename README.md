@@ -64,8 +64,8 @@ We have implemented everything covered in proposal. However as this idea is pret
 
 ### Contribution:
 
-Suxiang Han - Frontend Chrome Extension, Client-server JavaScript Communication
+Suxiang Han - Frontend Chrome Extension, Client-Server JavaScript Communication
 
-Juntong Song - Backend BM25 and Bert implementation
+Juntong Song - Backend BM25 and Bert ranking algorithm implementation
 
 Joshua Wu - Frontend Chrome Extension, popup
