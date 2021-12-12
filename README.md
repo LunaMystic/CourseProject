@@ -35,7 +35,7 @@ Redirect to folder CourseProject/extension and hit 'Select Folder'
 make sure prerequisites are fullfilled and run python backend/app.py
 
 ### To use the extension:
-Google search a subject and click on a link, which will automatically highlight text. Otherwise, manually query by clicking the extension in the top right, enter your query, and click run.
+Google search a subject and click on a link, which will automatically highlight text. Otherwise, manually query by clicking the extension in the top right, enter your query, and click run or "BERT" button.
 
 Features:
 * Auto fetch the query entered during google search page
@@ -59,3 +59,4 @@ We have implemented everything covered in proposal. However as this idea is pret
 * Add support to more methods besides BM25
 * Future implementation of BERT to answer qustion with specific answer that includes in the web page (such as "Who is CEO of Tesla" in Tesla web page)
 * Currently, the BM25 will give a high score to the reference list on the page. We have noticed this problem and plan to resolve it in the future by either letting the users choose the number of prediction results shown on the page or adding more rules in the algorithm to filter out these references.
+* We plan to move the backend to the Cloud to support the possible new features, which could require more computation resources.
