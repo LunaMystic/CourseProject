@@ -4,7 +4,11 @@
 Better Search Box is a chrome extension, designed to match a user query with relevant text within a webpage. Chrome has similar built in functionality in the form of Control+F, however that only searches for exact strings. Better Search Box will find relevant text on the webpage, and highlight them.
 
 ## Implementation Documentation
-Better Search Box is written with a JavaScript frontend and Python backend. The frontend creates a user interface in the form of a popup, and handles most of the work except for the text ranking. We use multiple Chrome APIs such as tabs in the project. The frontend functions much like a standard Chrome Extension, using messaging to accomplish communication between the extension and t he browser. Once the query is created, the query and text are sent to the Python backend by using a Sanic server. The backend then uses Okapi BM25 to determine which segments of text is most relevant to the query, and sends the response back to the extension. The webpage is then highlighted by adjusting the html of the webpage with the relevant sentences.
+Better Search Box is written with a JavaScript frontend and Python backend. The frontend creates a user interface in the form of a popup, and handles most of the work except for the text ranking. We use multiple Chrome APIs such as tabs in the project. The frontend functions much like a standard Chrome Extension, using messaging to accomplish communication between the extension and the browser. Once the query is created, the query and text are sent to the Python backend based on Sanic. 
+
+The backend will handle both data preprocessing and prediction tasks. The prediction module includes Okapi BM25 and Distilbert algorithms. The BM25 part will separate the single input document into multiple sub-documents following specific strategies and feed them to the algorithm with the query to get the most relevant segments. In the Bert part, we finally choose to use Distilbert for the shorter response time due to all the computations running locally.
+
+The prediction results then will be sent back to the frontend. The webpage is then highlighted by adjusting the HTML of the webpage with the relevant sentences.
 
 ## Usage Documentation
 For a mac or linux user, simply run [sh setup.sh] to install dependencies and run the server
@@ -40,6 +44,10 @@ Features:
 * Perform simple BERT based on user specific query
 * Highlighting
 
+Tips:
+* Try to type your query in manually and click the "BERT" button if you have specific questions like "What's the birth date of Bill Gates?" and the default setting doesn't give you the desired results.
+* When you use our extension with the default setting, a set of keywords will be preferred. However, when you use the "BERT" function to search for the answers, enter a complete sentence to get more accurate answers. 
+
 Shortcut:
 <kbd>Ctrl (⌘ for Mac) + Shift + Z</kbd>
 Video tutorial here: https://www.youtube.com/watch?v=Xmho9pgFnyc
@@ -50,4 +58,4 @@ We have implemented everything covered in proposal. However as this idea is pret
 * Prettify the popup window
 * Add support to more methods besides BM25
 * Future implementation of BERT to answer qustion with specific answer that includes in the web page (such as "Who is CEO of Tesla" in Tesla web page)
-* Currently, the BM25 will give high score to the reference list on the page. We have noticed this problem and plan to resolve it in the future by either letting the users choose the number of prediction results showed on the page or adding more rules in the alogorithm to filter out these references.
+* Currently, the BM25 will give a high score to the reference list on the page. We have noticed this problem and plan to resolve it in the future by either letting the users choose the number of prediction results shown on the page or adding more rules in the algorithm to filter out these references.
